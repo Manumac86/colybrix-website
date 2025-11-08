@@ -17,8 +17,33 @@ import {
   Target,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { toast } from "sonner";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    formData.append("access_key", "897b207e-9ae8-4514-80f9-5f50446e4915");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      toast("Message sent successfully");
+    }
+
+    if (response.status !== 200) {
+      toast("Error sending message", {
+        description: "Please try again later",
+        duration: 5000,
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background dark">
       {/* Navigation */}
@@ -34,7 +59,7 @@ export default function Home() {
                 Based in Madrid, Spain
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight text-balance">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-balance bg-linear-(--gradient-collybrix) bg-clip-text text-transparent">
               Your technical partner for startup acceleration.
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty max-w-2xl">
@@ -44,17 +69,19 @@ export default function Home() {
               beyond.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 text-base"
-              >
-                Partner With Us
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <Link href="/#contact">
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/60 text-base transition-all duration-300"
+                >
+                  Partner With Us
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 hover:translate-x-1 " />
+                </Button>
+              </Link>
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base border-border hover:bg-secondary bg-transparent"
+                className="text-base border-border hover:bg-secondary bg-transparent bg-linear-(--gradient-collybrix) bg-clip-text text-transparent"
               >
                 See How It Works
               </Button>
@@ -589,7 +616,7 @@ export default function Home() {
           </div>
 
           <Card className="p-8 md:p-12 bg-card border-border">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label
@@ -729,14 +756,16 @@ export default function Home() {
                   Send Message
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button
-                  type="button"
-                  size="lg"
-                  variant="outline"
-                  className="text-base border-border hover:bg-secondary bg-transparent"
-                >
-                  Schedule a Demo Call
-                </Button>
+                <Link href="https://calendar.app.google/mnJRSUAvU7nECYDK7">
+                  <Button
+                    type="button"
+                    size="lg"
+                    variant="outline"
+                    className="text-base border-border hover:bg-secondary bg-transparent"
+                  >
+                    Schedule a Demo Call
+                  </Button>
+                </Link>
               </div>
 
               <p className="text-xs text-muted-foreground text-center">
@@ -776,150 +805,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-card">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                  <span className="font-mono text-lg font-bold text-primary-foreground">
-                    C
-                  </span>
-                </div>
-                <span className="text-xl font-bold text-card-foreground">
-                  Collybrix
-                </span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Technical partner for startup accelerators. AI-powered
-                development, XP mentorship, solid foundations.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-card-foreground mb-4">
-                Services
-              </h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    PRD Generation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Team Building
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    XP Mentorship
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    AI Development
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-card-foreground mb-4">
-                Company
-              </h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Partners
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Case Studies
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-card-foreground mb-4">
-                Connect
-              </h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Twitter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Newsletter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>
-              © 2025 Collybrix. All rights reserved. Based in Madrid, Spain.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

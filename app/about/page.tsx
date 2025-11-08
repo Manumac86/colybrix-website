@@ -12,6 +12,8 @@ import {
   Rocket,
   ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
+import { Footer } from "@/components/footer";
 
 export default function AboutPage() {
   return (
@@ -297,164 +299,31 @@ export default function AboutPage() {
               from you.`}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 text-base"
-              >
-                Start a Conversation
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-base border-border hover:bg-secondary bg-transparent"
-              >
-                View Our Work
-              </Button>
+              <Link href="/#contact">
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 text-base"
+                >
+                  Start a Conversation
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/#partners">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-base border-border hover:bg-secondary bg-transparent"
+                >
+                  View Our Work
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                  <span className="font-mono text-lg font-bold text-primary-foreground">
-                    C
-                  </span>
-                </div>
-                <span className="text-xl font-bold text-foreground">
-                  Collybrix
-                </span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Technical partner for startup accelerators. AI-powered
-                development, XP mentorship, solid foundations.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Services</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a
-                    href="/#services"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    PRD Generation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#services"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Team Building
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#services"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    XP Mentorship
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#services"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    AI Development
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a
-                    href="/about"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#partners"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Partners
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#partners"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Case Studies
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#contact"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Connect</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Twitter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Newsletter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>
-              © 2025 Collybrix. All rights reserved. Based in Madrid, Spain.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
