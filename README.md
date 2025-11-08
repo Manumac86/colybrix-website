@@ -1,4 +1,4 @@
 ## Collybrix Website
 
 - Starter NextJS Website
-- Add Logo, Styling and contact form
+- Add Logo, Styling, about and contact form
