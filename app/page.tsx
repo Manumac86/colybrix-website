@@ -315,7 +315,7 @@ export default function Home() {
       </section>
 
       {/* Partners Section */}
-      <section
+      {/* <section
         id="partners"
         className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32"
       >
@@ -497,7 +497,7 @@ export default function Home() {
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
-      </section>
+      </section> */}
 
       {/* Team Section */}
       <section id="team" className="bg-card border-y border-border">
@@ -774,7 +774,7 @@ export default function Home() {
             </form>
           </Card>
 
-          <div className="mt-12 grid md:grid-cols-3 gap-6 text-center">
+          {/* <div className="mt-12 grid md:grid-cols-3 gap-6 text-center">
             <div className="space-y-2">
               <div className="text-sm font-medium text-foreground">
                 Email Us
@@ -800,7 +800,7 @@ export default function Home() {
                 Within 24 hours
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
