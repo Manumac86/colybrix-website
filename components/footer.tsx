@@ -1,3 +1,4 @@
+import { MapPin } from "lucide-react";
 import { Logo } from "./logo";
 
 export const Footer = () => {
@@ -13,6 +14,12 @@ export const Footer = () => {
               Technical partner for startup accelerators. AI-powered
               development, XP mentorship, solid foundations.
             </p>
+            <div className="inline-flex items-center gap-2 rounded-full border border-border text-secondary-foreground px-4 py-1.5">
+              <MapPin className="h-4 w-4 text-primary" />
+              <span className="text-sm text-muted-foreground">
+                Based in Madrid, Spain
+              </span>
+            </div>
           </div>
           <div>
             <h4 className="font-semibold text-card-foreground mb-4">
@@ -30,6 +37,7 @@ export const Footer = () => {
               <li>
                 <a
                   href="/#services"
+                  data-testid="team-building-link"
                   className="hover:text-foreground transition-colors"
                 >
                   Team Building

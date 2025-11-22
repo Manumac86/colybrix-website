@@ -1,14 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Navigation } from "@/components/navigation";
 import {
   ArrowRight,
   Rocket,
   Users,
   Code,
   TrendingUp,
-  MapPin,
   Zap,
   FileText,
   GitBranch,
@@ -19,7 +17,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
-import { Footer } from "@/components/footer";
 
 export default function Home() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -45,53 +42,62 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background dark">
-      {/* Navigation */}
-      <Navigation />
-
+    <>
       {/* Hero Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+      <video
+        src="/hero_video.mp4"
+        autoPlay
+        muted
+        loop
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-80 -z-0"
+      />
+      <section className="container my-8 mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-2xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5">
-              <MapPin className="h-4 w-4 text-primary" />
-              <span className="text-sm text-muted-foreground">
-                Based in Madrid, Spain
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-balance bg-linear-(--gradient-collybrix) bg-clip-text text-transparent">
-              Your technical partner for startup acceleration.
+            <h1 className="text-5xl md:text-4xl lg:text-6xl font-bold leading-tight text-balance bg-linear-(--gradient-collybrix) bg-clip-text text-transparent">
+              Your technical <br /> Co-Founder for startup acceleration. No
+              long-term contract.
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty max-w-2xl">
-              AI-powered software that helps accelerators and startups build
-              solid tech foundations. From premier PRDs to mentored dev teams
-              using Xtreme Programming—accelerate your path from MVP to v1.0 and
-              beyond.
+            <p className="text-lg md:text-xl text-card-foreground dark:text-muted-foreground leading-relaxed text-pretty max-w-2xl">
+              We’re not a consultancy. We’re not an agency. We’re the senior
+              technical team you wish you’d had from day one—committed to your
+              success, not billing by the hour. AI-powered experts, embedded as
+              your co-founders, we turn vision into traction with proven
+              execution, supported by our own AI-powered software that helps
+              accelerators and startups build solid tech foundations.
+            </p>
+            <p className="text-lg md:text-xl text-card-foreground dark:text-muted-foreground leading-relaxed text-pretty max-w-2xl">
+              From premier PRDs to mentored dev teams using our own proven
+              methodologies, adapted to your needs, we will accelerate your path
+              from MVP to v1.0 and beyond.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/#contact">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/60 text-base transition-all duration-300"
+                  variant="outline"
+                  className="text-base text-primary-foreground bg-primary hover:bg-secondary/50 border-none"
                 >
                   Partner With Us
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 hover:translate-x-1 " />
                 </Button>
               </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-base border-border hover:bg-secondary bg-transparent bg-linear-(--gradient-collybrix) bg-clip-text text-transparent"
-              >
-                See How It Works
-              </Button>
+              <Link href="/#our-approach">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-base bg-transparent border-primary hover:bg-primary/10"
+                >
+                  Our Approach
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="relative">
             <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 via-accent/20 to-primary/10 backdrop-blur-3xl border border-border p-8">
               <div className="h-full w-full flex items-center justify-center">
                 <Image
-                  src="/modern-startup-team-collaboration-workspace.jpg"
+                  src="/hero_1.png"
                   alt="Collybrix AI-powered development"
                   className="rounded-xl object-cover w-full h-full"
                   width={884}
@@ -104,40 +110,108 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="border-y border-border bg-card">
+      <section className="border-y border-border relative bg-white/50 dark:bg-black/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-secondary">
             <div className="text-center space-y-2">
-              <div className="text-4xl md:text-5xl font-bold text-primary">
-                60%
-              </div>
-              <div className="text-sm text-muted-foreground">
-                Faster Time to Market
-              </div>
+              <div className="text-4xl md:text-5xl font-bold">60%</div>
+              <div className="text-sm">Faster Time to Market</div>
             </div>
             <div className="text-center space-y-2">
-              <div className="text-4xl md:text-5xl font-bold text-primary">
-                100+
-              </div>
-              <div className="text-sm text-muted-foreground">
-                Teams Mentored
-              </div>
+              <div className="text-4xl md:text-5xl font-bold">10+</div>
+              <div className="text-sm">Methodologies Adapted</div>
             </div>
             <div className="text-center space-y-2">
-              <div className="text-4xl md:text-5xl font-bold text-primary">
-                95%
-              </div>
-              <div className="text-sm text-muted-foreground">
-                Code Quality Score
-              </div>
+              <div className="text-4xl md:text-5xl font-bold">100%</div>
+              <div className="text-sm">Code Quality Guaranteed</div>
             </div>
             <div className="text-center space-y-2">
-              <div className="text-4xl md:text-5xl font-bold text-primary">
-                MVP→v1.0
+              <div className="text-4xl md:text-5xl font-bold">MVP→v1.0</div>
+              <div className="text-sm">Solid Foundation to Scale</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Approach Section */}
+      <section id="our-approach" className="bg-card">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 shadow-lg rounded-2xl my-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-accent/20 via-primary/20 to-accent/10 backdrop-blur-3xl border border-border p-8">
+                <div className="h-full w-full flex items-center justify-center">
+                  <Image
+                    src="/hero_2.png"
+                    alt="Collybrix mentorship"
+                    className="rounded-xl object-cover w-full h-full"
+                    width={300}
+                    height={300}
+                  />
+                </div>
               </div>
-              <div className="text-sm text-muted-foreground">
-                Solid Foundation
+            </div>
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5">
+                <Rocket className="h-4 w-4 text-primary" />
+                <span className="text-sm text-muted-foreground">
+                  The Collybrix Advantage
+                </span>
               </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-card-foreground text-balance">
+                Our Approach: <br /> From MVP to market leader.
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We combine AI-powered tools with human expertise to accelerate
+                your technical journey while building a solid foundation for
+                long-term success.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <Target className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                  <div>
+                    <div className="font-semibold text-card-foreground">
+                      Shorter Time to Market
+                    </div>
+                    <div className="text-muted-foreground">
+                      AI-accelerated development reduces your go-to-market
+                      timeline by 60%
+                    </div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Zap className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                  <div>
+                    <div className="font-semibold text-card-foreground">
+                      Proven Methodologies
+                    </div>
+                    <div className="text-muted-foreground">
+                      Our own proven methodologies, adapted to your team's
+                      needs, ensure quality, testing, and maintainability.
+                    </div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <TrendingUp className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                  <div>
+                    <div className="font-semibold text-card-foreground">
+                      Solid Foundation to Scale
+                    </div>
+                    <div className="text-muted-foreground">
+                      A solid technical foundation supports growth from MVP to
+                      v1.0 and beyond.
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              {/* <Link href="/our-approach">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-base border-border hover:bg-secondary bg-transparent bg-linear-(--gradient-collybrix) bg-clip-text text-transparent"
+                >
+                  See How It Works →
+                </Button>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -146,15 +220,23 @@ export default function Home() {
       {/* Services Section */}
       <section
         id="services"
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32"
+        className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32"
       >
+        <video
+          src="/hero_video2.mp4"
+          autoPlay
+          muted
+          loop
+          className="absolute top-0 left-0 w-full h-full object-cover opacity-20 -z-0 rounded-2xl"
+        />
         <div className="space-y-4 text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground text-balance">
             AI-powered technical excellence.
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Our AI agentic software and expert mentorship help accelerators and
-            startups build better, faster, and smarter.
+            Our AI agentic platform, combined with our own proven methodologies
+            and expert mentorship help accelerators and startups build better,
+            faster, and smarter.
           </p>
         </div>
 
@@ -167,8 +249,8 @@ export default function Home() {
               Premier PRD Generation
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              AI-powered Product Requirements Documents that set the foundation
-              for successful development cycles.
+              Our AI agentic platform generates Product Requirements Documents
+              that set the foundation for successful development cycles.
             </p>
           </Card>
 
@@ -190,11 +272,11 @@ export default function Home() {
               <GitBranch className="h-6 w-6 text-primary" />
             </div>
             <h3 className="text-xl font-semibold text-card-foreground">
-              Xtreme Programming
+              Our own proven methodologies
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Implement XP methodologies for rapid iteration, continuous
-              feedback, and sustainable development.
+              Our own proven methodologies, adapted to your team's needs, ensure
+              quality, testing, and maintainability, faster than ever.
             </p>
           </Card>
 
@@ -236,81 +318,6 @@ export default function Home() {
               documentation, and maintainable systems.
             </p>
           </Card>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section id="how-it-works" className="bg-card border-y border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5">
-                <Rocket className="h-4 w-4 text-primary" />
-                <span className="text-sm text-muted-foreground">
-                  The Collybrix Advantage
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-card-foreground text-balance">
-                From MVP to market leader.
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                We combine AI-powered tools with human expertise to accelerate
-                your technical journey while building a solid foundation for
-                long-term success.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <Target className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <div className="font-semibold text-card-foreground">
-                      Shorter Time to Market
-                    </div>
-                    <div className="text-muted-foreground">
-                      AI-accelerated development reduces your go-to-market
-                      timeline by 60%
-                    </div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Zap className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <div className="font-semibold text-card-foreground">
-                      Best Practices Built-In
-                    </div>
-                    <div className="text-muted-foreground">
-                      XP methodologies ensure quality, testing, and
-                      maintainability from day one
-                    </div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <TrendingUp className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <div className="font-semibold text-card-foreground">
-                      Scale with Confidence
-                    </div>
-                    <div className="text-muted-foreground">
-                      Solid technical foundation supports growth from MVP
-                      through v1.0 and beyond
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-accent/20 via-primary/20 to-accent/10 backdrop-blur-3xl border border-border p-8">
-                <div className="h-full w-full flex items-center justify-center">
-                  <Image
-                    src="/startup-founders-working-together-in-modern-office.jpg"
-                    alt="Collybrix mentorship"
-                    className="rounded-xl object-cover w-full h-full"
-                    width={300}
-                    height={300}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -500,7 +507,7 @@ export default function Home() {
       </section> */}
 
       {/* Team Section */}
-      <section id="team" className="bg-card border-y border-border">
+      <section id="team" className="bg-card">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
           <div className="space-y-4 text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-card-foreground text-balance">
@@ -588,7 +595,7 @@ export default function Home() {
           </div>
 
           <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border text-secondary-foreground px-6 py-3">
               <Users className="h-5 w-5 text-primary" />
               <span className="text-sm text-muted-foreground">
                 Plus a team of 15+ senior engineers and XP coaches ready to
@@ -615,7 +622,7 @@ export default function Home() {
             </p>
           </div>
 
-          <Card className="p-8 md:p-12 bg-card border-border">
+          <Card className="p-8 md:p-12 bg-card border-border shadow-lg rounded-2xl">
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -751,7 +758,7 @@ export default function Home() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 text-base flex-1 sm:flex-initial"
+                  className="text-base text-primary-foreground bg-primary hover:bg-secondary/50 border-none"
                 >
                   Send Message
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -761,7 +768,7 @@ export default function Home() {
                     type="button"
                     size="lg"
                     variant="outline"
-                    className="text-base border-border hover:bg-secondary bg-transparent"
+                    className="text-base bg-transparent border-primary hover:bg-primary/10"
                   >
                     Schedule a Demo Call
                   </Button>
@@ -803,9 +810,6 @@ export default function Home() {
           </div> */}
         </div>
       </section>
-
-      {/* Footer */}
-      <Footer />
-    </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 // import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Logo } from "./logo";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Navigation() {
   return (
@@ -8,19 +9,18 @@ export function Navigation() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Logo />
-
           <div className="hidden md:flex items-center gap-8">
+            <Link
+              href="/#our-approach"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Our Approach
+            </Link>
             <Link
               href="/#services"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Services
-            </Link>
-            <Link
-              href="/#how-it-works"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              How It Works
             </Link>
             <Link
               href="/#partners"
@@ -30,6 +30,7 @@ export function Navigation() {
             </Link>
             <Link
               href="/#team"
+              data-testid="team-link"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Team
@@ -47,6 +48,7 @@ export function Navigation() {
               Contact
             </Link>
           </div>
+          <ThemeToggle />
           {/* <Button
             size="sm"
             className="bg-primary text-primary-foreground hover:bg-primary/90"

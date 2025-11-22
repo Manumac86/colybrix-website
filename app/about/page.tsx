@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Navigation } from "@/components/navigation";
 import {
   Target,
   Lightbulb,
@@ -13,17 +12,14 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
-import { Footer } from "@/components/footer";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background dark">
-      <Navigation />
-
+    <>
       {/* Hero Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5">
             <Heart className="h-4 w-4 text-primary" />
             <span className="text-sm text-muted-foreground">Our Story</span>
           </div>
@@ -32,7 +28,7 @@ export default function AboutPage() {
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
             {`Collybrix was born from a simple observation: startups fail not
-            because of bad ideas, but because of poor technical execution. We're
+            because of bad ideas, but because of poor technical execution and poor market fit. We're
             here to change that.`}
           </p>
         </div>
@@ -321,9 +317,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <Footer />
-    </div>
+    </>
   );
 }

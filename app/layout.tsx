@@ -1,11 +1,16 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "@/components/ui/sonner";
 import { Suspense } from "react";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+
+const _geist = Geist({ subsets: ["latin"] });
+const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Collybrix - Madrid Technical Accelerator",
@@ -20,11 +25,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={null}>{children}</Suspense>
-        <Analytics />
-        <Toaster />
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body className={`font-sans antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          {/* Navigation */}
+          <Suspense fallback={null}>
+            <div className="min-h-screen bg-background">
+              <Navigation />
+              {children}
+              <Footer />
+            </div>
+          </Suspense>
+
+          {/* Footer */}
+          <Analytics />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,0 +1,87 @@
+CollybrixWeb/
+├── HOME/
+│   ├── your-technical-partner/
+│   │   AI-powered software that helps accelerators and startups build solid tech foundations. From premier 
+│   │   PRDs to mentored dev teams using Xtreme Programming—accelerate your path from MVP to v1.0 and beyond.
+│   │
+│   ├── metrics/
+│   │   60% faster, 95% code quality, 100+ teams
+│   │
+│   └── from-mvp-to-market-leader/
+│       We combine AI-powered tools with human expertise to accelerate your technical journey while building a
+│       solid foundation for long-term success.
+│       Shorter Time to Market
+│       AI-accelerated development reduces your go-to-market timeline by 60%
+│       Best Practices Built-In
+│       XP methodologies ensure quality, testing, and maintainability from day one
+│       Scale with Confidence
+│       Solid technical foundation supports growth from MVP through v1.0 and beyond
+│
+├── SERVICES/
+│   └── ai-powered-technical-excellence/
+│       ├── premier-prd-generation/
+│       │   AI-powered Product Requirements Documents that set the foundation for successful development cycles.
+│       ├── tech-team-building/
+│       │   Build and mentor solid development teams with proven methodologies and best practices.
+│       ├── xtreme-programming/
+│       │   Implement XP methodologies for rapid iteration, continuous feedback, and sustainable development.
+│       ├── ai-accelerated-development/
+│       │   Leverage AI agents to speed up development cycles while maintaining code quality and best practices.
+│       ├── testing-and-quality-assurance/
+│       │   Comprehensive testing strategies from MVP to production, ensuring reliability at every stage.
+│       └── solid-tech-foundation/
+│           Build scalable architectures with clean code, proper documentation, and maintainable systems.
+│
+├── PARTNERS/
+│   ├── intro-text/                       # Text introducing collaboration model (TBD)
+│   └── client-logos/                     # Horizontal scroll bar with partner logos (TBD)
+│
+├── HOW IT WORKS (OUR APPROACH)/
+│   ├── antecedentes/                     # Context: why startups fail, market reality (TBD)
+│   ├── nuestra-metodologia/              # Own engineering methodology (XP + real experience) (TBD)
+│   └── nuestro-producto-ai-powered/      # Proprietary AI-driven platform overview (TBD)
+│
+├── ABOUT US/
+│   ├── Behind Collybrix
+│   │   ├── how-collybrix-began/              # Origin story and philosophy
+│   │   │   At Collybrix, we were born from a single question that followed us through years of experience in technology, ... 
+│   │   │
+│   │   ├── mission-vision-values/
+│   │   │   ├── Our Mission
+│   │   │   │   To empower startup accelerators and early-stage companies with AI-powered technical expertise, enabling them to build solid foundations, ship faster, and scale with confidence.
+│   │   │   │   We turn technical uncertainty into clarity, combining AI with our kowledge and real engineering experience.
+│   │   │   │   
+│   │   │   ├── Our Vision
+│   │   │   │   A world where technical excellence is accessible to every startup, regardless of its size or resources. Where AI amplifies human vision, transforming how innovation is built and 
+│   │   │   │   delivered, reducing the time from an idea to market-ready product. 
+│   │   │   │   
+│   │   │   └── Our core values.
+│   │   │       ├── Technical Excellence
+│   │   │       │   We never compromise on code quality, testing, or best practices. Shortcuts today become problems tomorrow.
+│   │   │       ├── AI + Human
+│   │   │       │   We believe the best results come from combining both, not choosing one over the other.
+│   │   │       ├── Mentorship First 
+│   │   │       │   We don't just build for you — we teach you to build. Our goal is to make teams self-sufficient and confident.
+│   │   │       ├── Speed with Substance
+│   │   │       │   Fast delivery matters, but not at the expense of quality. We help you move quickly while building solid foundations.
+│   │   │       └── Integrity & Collaboration
+│   │   │           Transparency and trust are at the heart of every partnership.
+│   │   │
+│   │   └── What makes us different.
+│   │
+│   └── team/
+│       └──  Meet the experts behind Collybrix.
+│
+└── contact-us/
+    └── webform/                          # Contact form + CTA: Schedule a call / Let's build together
+
+
+
+Incluir  - Inversores + CVCs
+
+EJEMPLO DE SECCIÓN:
+
+├── ¿Quiéres participar?/
+│   ├── Inversores
+│   │
+│   └── CVCs/
