@@ -10,6 +10,41 @@ jest.mock('sonner', () => ({
   Toaster: () => null,
 }))
 
+// Mock Radix UI Select to work in jsdom environment
+const SelectContext = React.createContext<{onValueChange?: (value: string) => void}>({})
+
+jest.mock('@/components/ui/select', () => ({
+  Select: ({ children, onValueChange }: any) => {
+    return (
+      <SelectContext.Provider value={{ onValueChange }}>
+        <div data-testid="select-root">{children}</div>
+      </SelectContext.Provider>
+    )
+  },
+  SelectTrigger: React.forwardRef(({ children, className, ...props }: any, ref: any) => (
+    <button ref={ref} className={className} type="button" {...props}>
+      {children}
+    </button>
+  )),
+  SelectValue: ({ placeholder }: any) => <span>{placeholder}</span>,
+  SelectContent: ({ children }: any) => <div>{children}</div>,
+  SelectItem: ({ children, value }: any) => {
+    const context = React.useContext(SelectContext)
+    return (
+      <button
+        role="option"
+        onClick={() => {
+          if (context.onValueChange) {
+            context.onValueChange(value)
+          }
+        }}
+      >
+        {children}
+      </button>
+    )
+  },
+}))
+
 describe('Home Page Integration Tests', () => {
   beforeEach(() => {
     jest.clearAllMocks()
@@ -20,21 +55,21 @@ describe('Home Page Integration Tests', () => {
     it('should render the complete home page', () => {
       render(<Home />)
 
-      // Check for main sections
-      expect(screen.getByText(/your technical partner/i)).toBeInTheDocument()
+      // Check for main sections (Co-Founder text is split across lines in the code)
+      expect(screen.getByText(/co-founder for startup acceleration/i)).toBeInTheDocument()
       expect(screen.getByText(/ai-powered technical excellence/i)).toBeInTheDocument()
       expect(screen.getByText(/from mvp to market leader/i)).toBeInTheDocument()
     })
 
-    it('should render navigation', () => {
+    it('should render hero section', () => {
       render(<Home />)
-      expect(screen.getByRole('navigation')).toBeInTheDocument()
+      expect(screen.getByText(/partner with us/i)).toBeInTheDocument()
     })
 
-    it('should render footer', () => {
+    it('should render services section', () => {
       const { container } = render(<Home />)
-      const footer = container.querySelector('footer')
-      expect(footer).toBeInTheDocument()
+      const servicesSection = container.querySelector('#services')
+      expect(servicesSection).toBeInTheDocument()
     })
   })
 
@@ -42,19 +77,21 @@ describe('Home Page Integration Tests', () => {
     it('should display hero headline', () => {
       render(<Home />)
       expect(
-        screen.getByText(/your technical partner for startup acceleration/i)
+        screen.getByText(/your technical.*co-founder for startup acceleration/i)
       ).toBeInTheDocument()
     })
 
-    it('should display location badge', () => {
-      render(<Home />)
-      expect(screen.getAllByText(/based in madrid, spain/i).length).toBeGreaterThan(0)
+    it('should render hero video', () => {
+      const { container } = render(<Home />)
+      // Check for video element
+      const video = container.querySelector('video')
+      expect(video).toBeInTheDocument()
     })
 
     it('should render CTA buttons', () => {
       render(<Home />)
       expect(screen.getByRole('button', { name: /partner with us/i })).toBeInTheDocument()
-      expect(screen.getByRole('button', { name: /see how it works/i })).toBeInTheDocument()
+      expect(screen.getByRole('button', { name: /our approach/i })).toBeInTheDocument()
     })
 
     it('should have working CTA links', () => {
@@ -78,11 +115,11 @@ describe('Home Page Integration Tests', () => {
       expect(screen.getByText('60%')).toBeInTheDocument()
       expect(screen.getByText(/faster time to market/i)).toBeInTheDocument()
 
-      expect(screen.getByText('100+')).toBeInTheDocument()
-      expect(screen.getByText(/teams mentored/i)).toBeInTheDocument()
+      expect(screen.getByText('10+')).toBeInTheDocument()
+      expect(screen.getByText(/methodologies adapted/i)).toBeInTheDocument()
 
-      expect(screen.getByText('95%')).toBeInTheDocument()
-      expect(screen.getByText(/code quality score/i)).toBeInTheDocument()
+      expect(screen.getByText('100%')).toBeInTheDocument()
+      expect(screen.getByText(/code quality guaranteed/i)).toBeInTheDocument()
 
       expect(screen.getByText('MVP→v1.0')).toBeInTheDocument()
       expect(screen.getAllByText(/solid foundation/i).length).toBeGreaterThan(0)
@@ -100,7 +137,7 @@ describe('Home Page Integration Tests', () => {
 
       expect(screen.getByText(/premier prd generation/i)).toBeInTheDocument()
       expect(screen.getByText(/tech team building/i)).toBeInTheDocument()
-      expect(screen.getAllByText(/xtreme programming/i).length).toBeGreaterThan(0)
+      expect(screen.getAllByText(/our own proven methodologies/i).length).toBeGreaterThan(0)
       expect(screen.getAllByText(/ai-accelerated development/i).length).toBeGreaterThan(0)
       expect(screen.getByText(/testing & quality assurance/i)).toBeInTheDocument()
       expect(screen.getAllByText(/solid tech foundation/i).length).toBeGreaterThan(0)
@@ -113,7 +150,7 @@ describe('Home Page Integration Tests', () => {
     })
   })
 
-  describe('How It Works Section', () => {
+  describe('Our Approach Section', () => {
     it('should display section heading', () => {
       render(<Home />)
       expect(screen.getByText(/from mvp to market leader/i)).toBeInTheDocument()
@@ -123,8 +160,8 @@ describe('Home Page Integration Tests', () => {
       render(<Home />)
 
       expect(screen.getByText(/shorter time to market/i)).toBeInTheDocument()
-      expect(screen.getByText(/best practices built-in/i)).toBeInTheDocument()
-      expect(screen.getByText(/scale with confidence/i)).toBeInTheDocument()
+      expect(screen.getAllByText(/proven methodologies/i).length).toBeGreaterThan(0)
+      expect(screen.getAllByText(/solid foundation to scale/i).length).toBeGreaterThan(0)
     })
 
     it('should display descriptive content', () => {
@@ -134,8 +171,8 @@ describe('Home Page Integration Tests', () => {
         screen.getByText(/ai-accelerated development reduces your go-to-market timeline by 60%/i)
       ).toBeInTheDocument()
       expect(
-        screen.getByText(/xp methodologies ensure quality, testing, and maintainability/i)
-      ).toBeInTheDocument()
+        screen.getAllByText(/our own proven methodologies.*ensure quality, testing, and maintainability/i).length
+      ).toBeGreaterThan(0)
       expect(
         screen.getByText(/solid technical foundation supports growth from mvp/i)
       ).toBeInTheDocument()
@@ -143,7 +180,7 @@ describe('Home Page Integration Tests', () => {
 
     it('should have section anchor', () => {
       const { container } = render(<Home />)
-      const section = container.querySelector('#how-it-works')
+      const section = container.querySelector('#our-approach')
       expect(section).toBeInTheDocument()
     })
   })
@@ -187,31 +224,17 @@ describe('Home Page Integration Tests', () => {
       ).toBeInTheDocument()
     })
 
-    it('should render all form fields', () => {
+    it('should render contact form component', () => {
       render(<Home />)
 
+      // Verify form fields are rendered (from ContactForm component)
       expect(screen.getByLabelText(/full name/i)).toBeInTheDocument()
       expect(screen.getByLabelText(/email address/i)).toBeInTheDocument()
       expect(screen.getByLabelText(/company\/organization/i)).toBeInTheDocument()
-      expect(screen.getByLabelText(/i am a/i)).toBeInTheDocument()
-      expect(screen.getByLabelText(/current stage/i)).toBeInTheDocument()
+      // Check for Select labels by text (Select uses custom components, not standard form controls)
+      expect(screen.getByText(/i am a\.\.\. \*/i)).toBeInTheDocument()
+      expect(screen.getByText(/current stage/i)).toBeInTheDocument()
       expect(screen.getByLabelText(/tell us about your needs/i)).toBeInTheDocument()
-    })
-
-    it('should have required fields marked', () => {
-      render(<Home />)
-
-      const nameInput = screen.getByLabelText(/full name/i)
-      const emailInput = screen.getByLabelText(/email address/i)
-      const companyInput = screen.getByLabelText(/company\/organization/i)
-      const typeSelect = screen.getByLabelText(/i am a/i)
-      const messageTextarea = screen.getByLabelText(/tell us about your needs/i)
-
-      expect(nameInput).toBeRequired()
-      expect(emailInput).toBeRequired()
-      expect(companyInput).toBeRequired()
-      expect(typeSelect).toBeRequired()
-      expect(messageTextarea).toBeRequired()
     })
 
     it('should render submit button', () => {
@@ -235,7 +258,7 @@ describe('Home Page Integration Tests', () => {
     })
   })
 
-  describe('Contact Form Submission', () => {
+  describe('Contact Form Submission Integration', () => {
     it('should submit form with valid data', async () => {
       const user = userEvent.setup()
       ;(global.fetch as jest.Mock).mockResolvedValueOnce({
@@ -246,17 +269,23 @@ describe('Home Page Integration Tests', () => {
       render(<Home />)
 
       // Fill out the form
-      await user.type(screen.getByLabelText(/full name/i), 'John Doe')
-      await user.type(screen.getByLabelText(/email address/i), 'john@example.com')
-      await user.type(screen.getByLabelText(/company\/organization/i), 'Test Company')
-      await user.selectOptions(screen.getByLabelText(/i am a/i), 'startup')
-      await user.type(
-        screen.getByLabelText(/tell us about your needs/i),
-        'We need help building our MVP'
-      )
+      const nameInput = screen.getByLabelText(/full name/i)
+      const emailInput = screen.getByLabelText(/email address/i)
+      const companyInput = screen.getByLabelText(/company\/organization/i)
+      const messageInput = screen.getByLabelText(/tell us about your needs/i)
+
+      await user.type(nameInput, 'John Doe')
+      await user.type(emailInput, 'john@example.com')
+      await user.type(companyInput, 'Test Company')
+      await user.type(messageInput, 'We need help building our MVP')
+
+      // Select type - with mock, options are always visible
+      const startupOption = screen.getByRole('option', { name: /startup founder/i })
+      await user.click(startupOption)
 
       // Submit the form
-      await user.click(screen.getByRole('button', { name: /send message/i }))
+      const submitButton = screen.getByRole('button', { name: /send message/i })
+      await user.click(submitButton)
 
       await waitFor(() => {
         expect(global.fetch).toHaveBeenCalledWith(
@@ -282,17 +311,23 @@ describe('Home Page Integration Tests', () => {
       render(<Home />)
 
       // Fill out the form with minimum required fields
-      await user.type(screen.getByLabelText(/full name/i), 'John Doe')
-      await user.type(screen.getByLabelText(/email address/i), 'john@example.com')
-      await user.type(screen.getByLabelText(/company\/organization/i), 'Test Company')
-      await user.selectOptions(screen.getByLabelText(/i am a/i), 'startup')
-      await user.type(
-        screen.getByLabelText(/tell us about your needs/i),
-        'Test message'
-      )
+      const nameInput = screen.getByLabelText(/full name/i)
+      const emailInput = screen.getByLabelText(/email address/i)
+      const companyInput = screen.getByLabelText(/company\/organization/i)
+      const messageInput = screen.getByLabelText(/tell us about your needs/i)
+
+      await user.type(nameInput, 'John Doe')
+      await user.type(emailInput, 'john@example.com')
+      await user.type(companyInput, 'Test Company')
+      await user.type(messageInput, 'Test message content')
+
+      // Select type - with mock, options are always visible
+      const startupOption = screen.getByRole('option', { name: /startup founder/i })
+      await user.click(startupOption)
 
       // Submit the form
-      await user.click(screen.getByRole('button', { name: /send message/i }))
+      const submitButton = screen.getByRole('button', { name: /send message/i })
+      await user.click(submitButton)
 
       await waitFor(() => {
         expect(toast).toHaveBeenCalledWith(
@@ -313,18 +348,45 @@ describe('Home Page Integration Tests', () => {
 
       render(<Home />)
 
-      await user.type(screen.getByLabelText(/full name/i), 'John Doe')
-      await user.type(screen.getByLabelText(/email address/i), 'john@example.com')
-      await user.type(screen.getByLabelText(/company\/organization/i), 'Test Company')
-      await user.selectOptions(screen.getByLabelText(/i am a/i), 'startup')
-      await user.type(screen.getByLabelText(/tell us about your needs/i), 'Test')
+      const nameInput = screen.getByLabelText(/full name/i)
+      const emailInput = screen.getByLabelText(/email address/i)
+      const companyInput = screen.getByLabelText(/company\/organization/i)
+      const messageInput = screen.getByLabelText(/tell us about your needs/i)
 
-      await user.click(screen.getByRole('button', { name: /send message/i }))
+      await user.type(nameInput, 'John Doe')
+      await user.type(emailInput, 'john@example.com')
+      await user.type(companyInput, 'Test Company')
+      await user.type(messageInput, 'Test message content')
+
+      // Select type - with mock, options are always visible
+      const startupOption = screen.getByRole('option', { name: /startup founder/i })
+      await user.click(startupOption)
+
+      const submitButton = screen.getByRole('button', { name: /send message/i })
+      await user.click(submitButton)
 
       await waitFor(() => {
         const formData = (global.fetch as jest.Mock).mock.calls[0][1].body
         expect(formData.get('access_key')).toBe('897b207e-9ae8-4514-80f9-5f50446e4915')
       })
+    })
+
+    it('should validate form fields before submission', async () => {
+      const user = userEvent.setup()
+      render(<Home />)
+
+      // Try to submit empty form
+      const submitButton = screen.getByRole('button', { name: /send message/i })
+      await user.click(submitButton)
+
+      // Should show validation errors (React Hook Form shows errors for all required fields)
+      await waitFor(() => {
+        // Check for any validation error message
+        expect(screen.getByText("Name must be at least 2 characters.")).toBeInTheDocument()
+      })
+
+      // Fetch should not be called
+      expect(global.fetch).not.toHaveBeenCalled()
     })
   })
 
@@ -379,10 +441,10 @@ describe('Home Page Integration Tests', () => {
       const textContent = container.textContent || ''
 
       expect(textContent).toContain('Collybrix')
-      expect(textContent).toContain('Madrid')
+      // Madrid appears in the footer
       expect(textContent).toContain('AI')
       expect(textContent).toContain('startup')
-      expect(textContent).toContain('accelerator')
+      expect(textContent).toContain('accelerat')  // matches "accelerate", "accelerator", "acceleration"
     })
   })
 })

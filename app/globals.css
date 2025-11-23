@@ -287,4 +287,9 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Ensure sections maintain their backgrounds when modals/portals open */
+  section {
+    isolation: isolate;
+  }
 }

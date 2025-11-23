@@ -61,28 +61,28 @@ test.describe("Homepage E2E Tests", () => {
       await expect(page.locator("#contact")).toBeInViewport();
     });
 
-    test("should navigate to how it works section", async ({ page }) => {
+    test("should navigate to our approach section", async ({ page }) => {
       const viewportSize = page.viewportSize();
       const isMobile = viewportSize && viewportSize.width < 768;
 
       if (isMobile) {
-        await page.locator("#how-it-works").scrollIntoViewIfNeeded();
+        await page.locator("#our-approach").scrollIntoViewIfNeeded();
       } else {
-        await page.getByRole("link", { name: /how it works/i }).click();
+        await page.getByRole("link", { name: /our approach/i }).click();
       }
-      await expect(page.locator("#how-it-works")).toBeInViewport();
+      await expect(page.locator("#our-approach")).toBeInViewport();
     });
   });
 
   test.describe("Hero Section", () => {
     test("should display hero headline", async ({ page }) => {
       await expect(
-        page.getByText(/your technical partner for startup acceleration/i)
+        page.getByText(/co-founder for startup acceleration/i)
       ).toBeVisible();
     });
 
-    test("should display location badge", async ({ page }) => {
-      // Use first() to avoid strict mode violation (appears in hero and footer)
+    test("should display location badge in footer", async ({ page }) => {
+      // Location badge is now only in footer
       await expect(page.getByText(/based in madrid, spain/i).first()).toBeVisible();
     });
 
@@ -104,15 +104,15 @@ test.describe("Homepage E2E Tests", () => {
     test("should display all statistics", async ({ page }) => {
       // Use first() to avoid strict mode violations (some stats appear in multiple places)
       await expect(page.getByText("60%").first()).toBeVisible();
-      await expect(page.getByText("100+").first()).toBeVisible();
-      await expect(page.getByText("95%").first()).toBeVisible();
+      await expect(page.getByText("10+").first()).toBeVisible();
+      await expect(page.getByText("100%").first()).toBeVisible();
       await expect(page.getByText("MVP→v1.0").first()).toBeVisible();
     });
 
     test("should display stat descriptions", async ({ page }) => {
       await expect(page.getByText(/faster time to market/i).first()).toBeVisible();
-      await expect(page.getByText(/teams mentored/i).first()).toBeVisible();
-      await expect(page.getByText(/code quality score/i).first()).toBeVisible();
+      await expect(page.getByText(/methodologies adapted/i).first()).toBeVisible();
+      await expect(page.getByText(/code quality guaranteed/i).first()).toBeVisible();
       await expect(page.getByText(/solid foundation/i).first()).toBeVisible();
     });
   });
@@ -123,7 +123,7 @@ test.describe("Homepage E2E Tests", () => {
 
       await expect(page.getByText(/premier prd generation/i).first()).toBeVisible();
       await expect(page.getByText(/tech team building/i).first()).toBeVisible();
-      await expect(page.getByText(/xtreme programming/i).first()).toBeVisible();
+      await expect(page.getByText(/our own proven methodologies/i).first()).toBeVisible();
       await expect(page.getByText(/ai-accelerated development/i).first()).toBeVisible();
       await expect(
         page.getByText(/testing & quality assurance/i).first()
@@ -318,17 +318,17 @@ test.describe("Homepage E2E Tests", () => {
   test.describe("Responsive Design", () => {
     test("should be responsive on mobile", async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
-      await expect(page.getByText(/your technical partner/i)).toBeVisible();
+      await expect(page.getByText(/co-founder for startup acceleration/i)).toBeVisible();
     });
 
     test("should be responsive on tablet", async ({ page }) => {
       await page.setViewportSize({ width: 768, height: 1024 });
-      await expect(page.getByText(/your technical partner/i)).toBeVisible();
+      await expect(page.getByText(/co-founder for startup acceleration/i)).toBeVisible();
     });
 
     test("should be responsive on desktop", async ({ page }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
-      await expect(page.getByText(/your technical partner/i)).toBeVisible();
+      await expect(page.getByText(/co-founder for startup acceleration/i)).toBeVisible();
     });
   });
 

@@ -37,8 +37,8 @@ test.describe('Navigation Flow E2E Tests', () => {
         await expect(page.locator('#services')).toBeInViewport({ timeout: 3000 })
         await page.waitForTimeout(500)
 
-        await page.locator('#how-it-works').scrollIntoViewIfNeeded()
-        await expect(page.locator('#how-it-works')).toBeInViewport({ timeout: 3000 })
+        await page.locator('#our-approach').scrollIntoViewIfNeeded()
+        await expect(page.locator('#our-approach')).toBeInViewport({ timeout: 3000 })
         await page.waitForTimeout(500)
 
         await page.locator('#team').scrollIntoViewIfNeeded()
@@ -49,13 +49,13 @@ test.describe('Navigation Flow E2E Tests', () => {
         await expect(page.locator('#contact')).toBeInViewport({ timeout: 3000 })
       } else {
         // Navigate to services
-        await page.locator('nav').getByRole('link', { name: /services/i }).click()
+        await page.locator('nav').getByRole('link', { name: /^services$/i }).click()
         await expect(page.locator('#services')).toBeInViewport({ timeout: 3000 })
         await page.waitForTimeout(500)
 
-        // Navigate to how it works
-        await page.locator('nav').getByRole('link', { name: /how it works/i }).click()
-        await expect(page.locator('#how-it-works')).toBeInViewport({ timeout: 3000 })
+        // Navigate to our approach
+        await page.locator('nav').getByRole('link', { name: /our approach/i }).click()
+        await expect(page.locator('#our-approach')).toBeInViewport({ timeout: 3000 })
         await page.waitForTimeout(500)
 
         // Navigate to team - use data-testid to avoid ambiguity
@@ -64,7 +64,7 @@ test.describe('Navigation Flow E2E Tests', () => {
         await page.waitForTimeout(500)
 
         // Navigate to contact
-        await page.locator('nav').getByRole('link', { name: /contact/i }).click()
+        await page.locator('nav').getByRole('link', { name: /^contact$/i }).click()
         await expect(page.locator('#contact')).toBeInViewport({ timeout: 3000 })
       }
     })

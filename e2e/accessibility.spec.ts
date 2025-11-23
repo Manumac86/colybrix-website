@@ -260,8 +260,8 @@ test.describe('Accessibility Tests', () => {
 
   test.describe('Color Contrast', () => {
     test('should have sufficient contrast for text', async ({ page }) => {
-      // Check hero text
-      const heroText = page.getByText(/your technical partner/i)
+      // Check hero text (updated to new headline)
+      const heroText = page.getByText(/co-founder for startup acceleration/i)
       await expect(heroText).toBeVisible()
 
       // Visual check - text should be readable
@@ -353,7 +353,7 @@ test.describe('Accessibility Tests', () => {
     test('should have readable text on mobile', async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 })
 
-      const heroText = page.getByText(/your technical partner/i)
+      const heroText = page.getByText(/co-founder for startup acceleration/i)
       await expect(heroText).toBeVisible()
 
       // Font size should be readable

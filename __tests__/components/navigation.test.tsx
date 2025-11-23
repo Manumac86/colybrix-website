@@ -12,55 +12,56 @@ describe('Navigation Component', () => {
 
     it('should render the logo', () => {
       render(<Navigation />)
-      expect(screen.getByText('Collybrix')).toBeInTheDocument()
+      const logoTexts = screen.getAllByText('Collybrix')
+      expect(logoTexts.length).toBeGreaterThan(0)
     })
 
     it('should render all navigation links', () => {
       render(<Navigation />)
 
-      expect(screen.getByRole('link', { name: /services/i })).toBeInTheDocument()
-      expect(screen.getByRole('link', { name: /how it works/i })).toBeInTheDocument()
-      expect(screen.getByRole('link', { name: /partners/i })).toBeInTheDocument()
-      expect(screen.getByRole('link', { name: /team/i })).toBeInTheDocument()
-      expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument()
-      expect(screen.getByRole('link', { name: /contact/i })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: /our approach/i })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: /^services$/i })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: /^partners$/i })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: /^team$/i })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: /^about$/i })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: /^contact$/i })).toBeInTheDocument()
     })
   })
 
   describe('Navigation Links', () => {
-    it('should have correct href for Services link', () => {
+    it('should have correct href for Our Approach link', () => {
       render(<Navigation />)
-      const servicesLink = screen.getByRole('link', { name: /services/i })
-      expect(servicesLink).toHaveAttribute('href', '/#services')
+      const ourApproachLink = screen.getByRole('link', { name: /our approach/i })
+      expect(ourApproachLink).toHaveAttribute('href', '/#our-approach')
     })
 
-    it('should have correct href for How It Works link', () => {
+    it('should have correct href for Services link', () => {
       render(<Navigation />)
-      const howItWorksLink = screen.getByRole('link', { name: /how it works/i })
-      expect(howItWorksLink).toHaveAttribute('href', '/#how-it-works')
+      const servicesLink = screen.getByRole('link', { name: /^services$/i })
+      expect(servicesLink).toHaveAttribute('href', '/#services')
     })
 
     it('should have correct href for Partners link', () => {
       render(<Navigation />)
-      const partnersLink = screen.getByRole('link', { name: /partners/i })
+      const partnersLink = screen.getByRole('link', { name: /^partners$/i })
       expect(partnersLink).toHaveAttribute('href', '/#partners')
     })
 
     it('should have correct href for Team link', () => {
       render(<Navigation />)
-      const teamLink = screen.getByRole('link', { name: /team/i })
+      const teamLink = screen.getByRole('link', { name: /^team$/i })
       expect(teamLink).toHaveAttribute('href', '/#team')
     })
 
     it('should have correct href for About link', () => {
       render(<Navigation />)
-      const aboutLink = screen.getByRole('link', { name: /about/i })
+      const aboutLink = screen.getByRole('link', { name: /^about$/i })
       expect(aboutLink).toHaveAttribute('href', '/about')
     })
 
     it('should have correct href for Contact link', () => {
       render(<Navigation />)
-      const contactLink = screen.getByRole('link', { name: /contact/i })
+      const contactLink = screen.getByRole('link', { name: /^contact$/i })
       expect(contactLink).toHaveAttribute('href', '/#contact')
     })
   })
@@ -115,7 +116,7 @@ describe('Navigation Component', () => {
 
     it('should have hover states for links', () => {
       render(<Navigation />)
-      const servicesLink = screen.getByRole('link', { name: /services/i })
+      const servicesLink = screen.getByRole('link', { name: /^services$/i })
       // Check that transition styles are applied (className may be processed by Tailwind)
       expect(servicesLink).toBeInTheDocument()
       expect(servicesLink).toHaveAttribute('href', '/#services')
@@ -153,15 +154,16 @@ describe('Navigation Component', () => {
   describe('Integration', () => {
     it('should render logo as clickable element', () => {
       render(<Navigation />)
-      const logoLink = screen.getByText('Collybrix').closest('a')
+      const logoTexts = screen.getAllByText('Collybrix')
+      const logoLink = logoTexts[0].closest('a')
       expect(logoLink).toHaveAttribute('href', '/')
     })
 
     it('should maintain proper DOM structure', () => {
       const { container } = render(<Navigation />)
       const nav = container.querySelector('nav')
-      const navContainer = nav?.querySelector('.container')
-      const flexContainer = navContainer?.querySelector('.flex.h-16')
+      const navContainer = nav?.querySelector('.container') as HTMLElement | null
+      const flexContainer = navContainer?.querySelector('.flex.h-16') as HTMLElement | null
 
       expect(nav).toContainElement(navContainer)
       expect(navContainer).toContainElement(flexContainer)

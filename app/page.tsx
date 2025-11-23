@@ -16,101 +16,82 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "sonner";
+import { ContactForm } from "@/components/contact-form";
 
 export default function Home() {
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    formData.append("access_key", "897b207e-9ae8-4514-80f9-5f50446e4915");
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (response.ok) {
-      toast("Message sent successfully");
-    }
-
-    if (response.status !== 200) {
-      toast("Error sending message", {
-        description: "Please try again later",
-        duration: 5000,
-      });
-    }
-  };
-
   return (
     <>
       {/* Hero Section */}
-      <video
-        src="/hero_video.mp4"
-        autoPlay
-        muted
-        loop
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-80 -z-0"
-      />
-      <section className="container my-8 mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-2xl">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <h1 className="text-5xl md:text-4xl lg:text-6xl font-bold leading-tight text-balance bg-linear-(--gradient-collybrix) bg-clip-text text-transparent">
-              Your technical <br /> Co-Founder for startup acceleration. No
-              long-term contract.
-            </h1>
-            <p className="text-lg md:text-xl text-card-foreground dark:text-muted-foreground leading-relaxed text-pretty max-w-2xl">
-              We’re not a consultancy. We’re not an agency. We’re the senior
-              technical team you wish you’d had from day one—committed to your
-              success, not billing by the hour. AI-powered experts, embedded as
-              your co-founders, we turn vision into traction with proven
-              execution, supported by our own AI-powered software that helps
-              accelerators and startups build solid tech foundations.
-            </p>
-            <p className="text-lg md:text-xl text-card-foreground dark:text-muted-foreground leading-relaxed text-pretty max-w-2xl">
-              From premier PRDs to mentored dev teams using our own proven
-              methodologies, adapted to your needs, we will accelerate your path
-              from MVP to v1.0 and beyond.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/#contact">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-base text-primary-foreground bg-primary hover:bg-secondary/50 border-none"
-                >
-                  Partner With Us
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 hover:translate-x-1 " />
-                </Button>
-              </Link>
-              <Link href="/#our-approach">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-base bg-transparent border-primary hover:bg-primary/10"
-                >
-                  Our Approach
-                </Button>
-              </Link>
+      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-20 relative overflow-hidden bg-white/70 dark:bg-black/70 backdrop-blur-sm ">
+        {/* Video background - only for hero section */}
+        <video
+          src="/hero_video.mp4"
+          autoPlay
+          muted
+          loop
+          className="absolute top-0 left-0 w-full h-full object-cover opacity-40 -z-10"
+        />
+        {/* Hero content overlay */}
+        <div className="relative z-0 p-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <h1 className="text-5xl md:text-4xl lg:text-6xl font-bold leading-tight text-balance bg-linear-(--gradient-collybrix) bg-clip-text text-transparent">
+                Your technical <br /> Co-Founder for startup acceleration. No
+                long-term contract.
+              </h1>
+              <p className="text-lg md:text-xl text-card-foreground dark:text-muted-foreground leading-relaxed text-pretty max-w-2xl">
+                We're not a consultancy. We're not an agency. We're the senior
+                technical team you wish you'd had from day one—committed to your
+                success, not billing by the hour. AI-powered experts, embedded
+                as your co-founders, we turn vision into traction with proven
+                execution, supported by our own AI-powered software that helps
+                accelerators and startups build solid tech foundations.
+              </p>
+              <p className="text-lg md:text-xl text-card-foreground dark:text-muted-foreground leading-relaxed text-pretty max-w-2xl">
+                From premier PRDs to mentored dev teams using our own proven
+                methodologies, adapted to your needs, we will accelerate your
+                path from MVP to v1.0 and beyond.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/#contact">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="text-base text-primary-foreground bg-primary hover:bg-secondary/50 border-none"
+                  >
+                    Partner With Us
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 hover:translate-x-1 " />
+                  </Button>
+                </Link>
+                <Link href="/#our-approach">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="text-base bg-transparent border-primary hover:bg-primary/10"
+                  >
+                    Our Approach
+                  </Button>
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="relative">
-            <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 via-accent/20 to-primary/10 backdrop-blur-3xl border border-border p-8">
-              <div className="h-full w-full flex items-center justify-center">
-                <Image
-                  src="/hero_1.png"
-                  alt="Collybrix AI-powered development"
-                  className="rounded-xl object-cover w-full h-full"
-                  width={884}
-                  height={300}
-                />
+            <div className="relative">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 via-accent/20 to-primary/10 backdrop-blur-3xl border border-border p-8">
+                <div className="h-full w-full flex items-center justify-center">
+                  <Image
+                    src="/hero_1.png"
+                    alt="Collybrix AI-powered development"
+                    className="rounded-xl object-cover w-full h-full"
+                    width={884}
+                    height={300}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
       {/* Stats Section */}
-      <section className="border-y border-border relative bg-white/50 dark:bg-black/50 backdrop-blur-sm">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 border-border bg-white/70 dark:bg-black/70  relative backdrop-blur-sm shadow-lg dark:shadow-secondary/10 rounded-2xl my-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-secondary">
             <div className="text-center space-y-2">
@@ -609,9 +590,9 @@ export default function Home() {
       {/* CTA Section */}
       <section
         id="contact"
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative bg-background"
       >
-        <div className="max-w-4xl mx-auto">
+        <div className="mx-auto relative z-0 py-8">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground text-balance">
               Ready to accelerate your technical journey?
@@ -622,163 +603,8 @@ export default function Home() {
             </p>
           </div>
 
-          <Card className="p-8 md:p-12 bg-card border-border shadow-lg rounded-2xl">
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label
-                    htmlFor="name"
-                    className="text-sm font-medium text-foreground"
-                  >
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="John Doe"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium text-foreground"
-                  >
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="john@example.com"
-                  />
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label
-                    htmlFor="company"
-                    className="text-sm font-medium text-foreground"
-                  >
-                    Company/Organization *
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="Your Company Name"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="type"
-                    className="text-sm font-medium text-foreground"
-                  >
-                    I am a... *
-                  </label>
-                  <select
-                    id="type"
-                    name="type"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  >
-                    <option value="">Select an option</option>
-                    <option value="accelerator">Accelerator/Incubator</option>
-                    <option value="startup">Startup Founder</option>
-                    <option value="investor">Investor</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label
-                  htmlFor="stage"
-                  className="text-sm font-medium text-foreground"
-                >
-                  Current Stage
-                </label>
-                <select
-                  id="stage"
-                  name="stage"
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                >
-                  <option value="">Select stage (optional)</option>
-                  <option value="idea">Idea Stage</option>
-                  <option value="mvp">Building MVP</option>
-                  <option value="launched">MVP Launched</option>
-                  <option value="scaling">Scaling (v1.0+)</option>
-                  <option value="established">Established Program</option>
-                </select>
-              </div>
-
-              <div className="space-y-2">
-                <label
-                  htmlFor="message"
-                  className="text-sm font-medium text-foreground"
-                >
-                  Tell us about your needs *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
-                  placeholder="Tell us about your technical challenges, goals, or how you'd like to partner with Collybrix..."
-                />
-              </div>
-
-              <div className="flex items-start gap-3">
-                <input
-                  type="checkbox"
-                  id="newsletter"
-                  name="newsletter"
-                  className="mt-1 h-4 w-4 rounded border-border bg-background text-primary focus:ring-2 focus:ring-primary focus:ring-offset-0"
-                />
-                <label
-                  htmlFor="newsletter"
-                  className="text-sm text-muted-foreground leading-relaxed"
-                >
-                  {`I'd like to receive updates about Collybrix services, case studies, and technical insights. You can
-                  unsubscribe at any time.`}
-                </label>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="text-base text-primary-foreground bg-primary hover:bg-secondary/50 border-none"
-                >
-                  Send Message
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Link href="https://calendar.app.google/mnJRSUAvU7nECYDK7">
-                  <Button
-                    type="button"
-                    size="lg"
-                    variant="outline"
-                    className="text-base bg-transparent border-primary hover:bg-primary/10"
-                  >
-                    Schedule a Demo Call
-                  </Button>
-                </Link>
-              </div>
-
-              <p className="text-xs text-muted-foreground text-center">
-                {`By submitting this form, you agree to our privacy policy. We'll respond within 24 hours.`}
-              </p>
-            </form>
+          <Card className="p-8 md:p-12 bg-card border-border shadow-lg dark:shadow-secondary/10 rounded-2xl relative z-10">
+            <ContactForm />
           </Card>
 
           {/* <div className="mt-12 grid md:grid-cols-3 gap-6 text-center">

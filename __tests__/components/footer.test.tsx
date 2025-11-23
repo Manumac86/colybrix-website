@@ -12,7 +12,8 @@ describe('Footer Component', () => {
 
     it('should render the logo', () => {
       render(<Footer />)
-      expect(screen.getByText('Collybrix')).toBeInTheDocument()
+      const logoTexts = screen.getAllByText('Collybrix')
+      expect(logoTexts.length).toBeGreaterThan(0)
     })
 
     it('should render company description', () => {
@@ -31,7 +32,11 @@ describe('Footer Component', () => {
 
     it('should display Madrid location', () => {
       render(<Footer />)
-      expect(screen.getByText(/based in madrid, spain/i)).toBeInTheDocument()
+      const madridTexts = screen.getAllByText(/based in madrid, spain/i)
+      expect(madridTexts.length).toBeGreaterThan(0)
+      madridTexts.forEach(element => {
+        expect(element).toBeInTheDocument()
+      })
     })
   })
 
@@ -224,14 +229,16 @@ describe('Footer Component', () => {
   describe('Logo Integration', () => {
     it('should render Logo component', () => {
       render(<Footer />)
-      const logoLink = screen.getByText('Collybrix').closest('a')
+      const logoTexts = screen.getAllByText('Collybrix')
+      const logoLink = logoTexts[0].closest('a')
       expect(logoLink).toHaveAttribute('href', '/')
     })
 
     it('should have logo in first column', () => {
       const { container } = render(<Footer />)
-      const firstColumn = container.querySelector('.grid > div:first-child')
-      expect(firstColumn).toContainElement(screen.getByText('Collybrix'))
+      const firstColumn = container.querySelector('.grid > div:first-child') as HTMLElement
+      const logoTexts = screen.getAllByText('Collybrix')
+      expect(firstColumn).toContainElement(logoTexts[0])
     })
   })
 })
