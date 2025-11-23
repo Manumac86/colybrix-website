@@ -5,3 +5,5 @@
 - Fix form and images
 - Remove companies
 - Add DS and tests
+- Add tests
+- Fix NAvigation
