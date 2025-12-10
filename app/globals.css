@@ -191,7 +191,7 @@
 
 .dark {
   /* Dark Mode Colors */
-  --background: oklch(0.145 0 0);
+  --background: lab(5% 0 0);
   --foreground: oklch(0.985 0 0);
 
   --card: oklch(0.145 0 0);

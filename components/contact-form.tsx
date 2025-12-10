@@ -120,7 +120,7 @@ export function ContactForm() {
                   <Input
                     placeholder="John Doe"
                     {...field}
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-background border border-foreground/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   />
                 </FormControl>
                 <FormMessage />
@@ -141,7 +141,7 @@ export function ContactForm() {
                     type="email"
                     placeholder="john@example.com"
                     {...field}
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-background border border-foreground/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   />
                 </FormControl>
                 <FormMessage />
@@ -164,7 +164,7 @@ export function ContactForm() {
                   <Input
                     placeholder="Your Company Name"
                     {...field}
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-background border border-foreground/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   />
                 </FormControl>
                 <FormMessage />
@@ -185,7 +185,7 @@ export function ContactForm() {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                    <SelectTrigger className="w-full px-4 py-3 rounded-lg bg-background border border-foreground/30 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                       <SelectValue placeholder="Select an option" />
                     </SelectTrigger>
                   </FormControl>
@@ -215,7 +215,7 @@ export function ContactForm() {
               </FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                  <SelectTrigger className="w-full px-4 py-3 rounded-lg bg-background border border-foreground/30 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                     <SelectValue placeholder="Select stage (optional)" />
                   </SelectTrigger>
                 </FormControl>
@@ -248,7 +248,7 @@ export function ContactForm() {
                   placeholder="Tell us about your technical challenges, goals, or how you'd like to partner with Collybrix..."
                   rows={6}
                   {...field}
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 rounded-lg bg-background border border-foreground/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
                 />
               </FormControl>
               <FormMessage />

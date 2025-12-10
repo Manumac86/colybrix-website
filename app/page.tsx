@@ -22,15 +22,22 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-20 relative overflow-hidden bg-white/70 dark:bg-black/70 backdrop-blur-sm ">
+      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-20 relative overflow-hidden bg-white/50 dark:bg-black/70 backdrop-blur-sm">
         {/* Video background - only for hero section */}
-        <video
+        <Image
+          src="/hero_1.png"
+          alt="Team member"
+          className="absolute top-0 left-0 w-full h-full object-cover opacity-50 -z-10"
+          width={800}
+          height={800}
+        />
+        {/* <video
           src="/hero_video.mp4"
           autoPlay
           muted
           loop
           className="absolute top-0 left-0 w-full h-full object-cover opacity-40 -z-10"
-        />
+        /> */}
         {/* Hero content overlay */}
         <div className="relative z-0 p-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -78,7 +85,7 @@ export default function Home() {
               <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 via-accent/20 to-primary/10 backdrop-blur-3xl border border-border p-8">
                 <div className="h-full w-full flex items-center justify-center">
                   <Image
-                    src="/hero_1.png"
+                    src="/startup-founders-working-together-in-modern-office-1.jpg"
                     alt="Collybrix AI-powered development"
                     className="rounded-xl object-cover w-full h-full"
                     width={884}
@@ -93,7 +100,7 @@ export default function Home() {
       {/* Stats Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 border-border bg-white/70 dark:bg-black/70  relative backdrop-blur-sm shadow-lg dark:shadow-secondary/10 rounded-2xl my-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-secondary">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-primary">
             <div className="text-center space-y-2">
               <div className="text-4xl md:text-5xl font-bold">60%</div>
               <div className="text-sm">Faster Time to Market</div>
@@ -504,16 +511,16 @@ export default function Home() {
             <Card className="p-6 space-y-4 bg-background border-border hover:border-primary/50 transition-all group">
               <div className="aspect-square rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden">
                 <Image
-                  src="/professional-male-tech-leader-headshot.jpg"
+                  src="/getimg_ai_img-KJw6l1LFmO1PScQOexr0O.png"
                   alt="Team member"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  width={300}
-                  height={300}
+                  width={800}
+                  height={800}
                 />
               </div>
               <div className="space-y-2">
                 <h3 className="text-xl font-semibold text-foreground">
-                  Emmanuel Martinez
+                  Emmanuel Martínez
                 </h3>
                 <p className="text-sm text-primary font-medium">
                   Co-Founder & CEO
@@ -537,7 +544,7 @@ export default function Home() {
               </div>
               <div className="space-y-2">
                 <h3 className="text-xl font-semibold text-foreground">
-                  Marina Martin Hernandez
+                  Marina Martín
                 </h3>
                 <p className="text-sm text-primary font-medium">
                   Co-Founder & CTO
@@ -561,7 +568,7 @@ export default function Home() {
               </div>
               <div className="space-y-2">
                 <h3 className="text-xl font-semibold text-foreground">
-                  Iñigo Rodriguez Sanz
+                  Íñigo Rodríguez
                 </h3>
                 <p className="text-sm text-primary font-medium">
                   Co-Founder & COO
@@ -603,7 +610,7 @@ export default function Home() {
             </p>
           </div>
 
-          <Card className="p-8 md:p-12 bg-card border-border shadow-lg dark:shadow-secondary/10 rounded-2xl relative z-10">
+          <Card className="p-8 md:p-12 bg-card border-foreground/30 shadow-lg dark:shadow-secondary/10 rounded-2xl relative z-10">
             <ContactForm />
           </Card>
 

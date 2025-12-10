@@ -37,7 +37,7 @@ CollybrixWeb/
 │   └── client-logos/                     # Horizontal scroll bar with partner logos (TBD)
 │
 ├── HOW IT WORKS (OUR APPROACH)/
-│   ├── antecedentes/                     # Context: why startups fail, market reality (TBD)
+│   ├── antecedentes/                     # Context: why startups fail, market reality (TBD) -> IÑIGO
 │   ├── nuestra-metodologia/              # Own engineering methodology (XP + real experience) (TBD)
 │   └── nuestro-producto-ai-powered/      # Proprietary AI-driven platform overview (TBD)
 │

@@ -132,14 +132,14 @@ export const queries = {
 /**
  * Performance testing helpers
  */
-export const performance = {
+export const performanceHelpers = {
   /**
    * Measure component render time
    */
   measureRenderTime: async (renderFn: () => void): Promise<number> => {
-    const start = performance.now()
+    const start = globalThis.performance.now()
     renderFn()
-    const end = performance.now()
+    const end = globalThis.performance.now()
     return end - start
   },
 
